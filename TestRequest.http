@@ -1,2 +1,4 @@
-GET http://localhost:8080/hallo
-Accept: text/plain
+GET http://localhost:8080/hallo/dto4
+Accept: application/xml
+Content-Type: application/json
+{"name": "Peter"}

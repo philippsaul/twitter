@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +31,28 @@ public class FH2021RestController {
     @PostMapping("/hallo/dto")
     public String postTest2(@RequestBody Who who){
         return "<h1>Hallo "+who.getName()+"</h1>";
+    }
+
+    @PostMapping("/hallo/dto2")
+    public Greeting postTest3(@RequestBody Who who){
+        Greeting greeting = new Greeting();
+        greeting.setName("Hallo"+who.getName());
+        return greeting;
+    }
+
+    @PostMapping("/hallo/dto3")
+    public ResponseEntity<Greeting> postTest4(@RequestBody Who who){
+        Greeting greeting = new Greeting();
+        greeting.setName("Hallo"+who.getName());
+        //return ResponseEntity.ok(greeting);
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(greeting);
+    }
+
+    @PostMapping(value="/hallo/dto4", produces = "application/xml")
+    public ResponseEntity<Greeting> postTest5(@RequestBody Who who){
+        Greeting greeting = new Greeting();
+        greeting.setName("Hallo"+who.getName());
+        //return ResponseEntity.ok(greeting);
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(greeting);
     }
 }
