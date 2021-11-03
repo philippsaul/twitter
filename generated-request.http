@@ -1,0 +1,4 @@
+POST http://localhost:8080/hallo/dto
+Content-Type: application/json
+
+{"name":  "Roger"}
