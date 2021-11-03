@@ -1,9 +1,11 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.example.demo.dto.Who;
+import com.example.demo.dto.Greeting;
 
 @RestController
 public class FH2021RestController {
