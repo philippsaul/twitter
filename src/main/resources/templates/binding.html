@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html th:lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/binding}" th:object="${who}">
+    <label>
+        Name:
+        <input th:field="*{name}" type="text"/>
+    </label>
+    <button type="submit">Absenden!</button>
+</form>
+<div th:if="${greeting}">
+    <hr/>
+    <span th:text="${greeting}"/>
+</div>
+</body>
+</html>
