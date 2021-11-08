@@ -10,7 +10,7 @@ import com.example.demo.dto.Greeting;
 @RestController
 public class FH2021RestController {
     // @RequestMapping(path="/hallo", method = RequestMethod.GET)
-    @GetMapping("/hallo")
+    @GetMapping("/bla")
     public String hallo(){
         return "Hallo";
     }

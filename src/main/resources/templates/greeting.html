@@ -1,13 +1,96 @@
 <!DOCTYPE html>
-<html th:lang="de" xmlns:th="http://www.thymeleaf.org">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <style>
+        .card-horizontal {
+            display: flex;
+            flex: 1 1 auto;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<h1>
-    <span>Hallo </span>
-    <span th:text="${name}">Welt</span>
-</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Spitter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Settings</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div th:if="${!addTweet}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="card">
+                    <div class="card-horizontal">
+                        <div class="img-square-wrapper">
+                            <img class="" src="http://via.placeholder.com/100" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 style="display:inline" class="card-title" th:text="${author}">Author Name</h5>
+
+                            <p class="card-text" th:text="${tweet_content}">
+                                This is the tweet content.
+                            </p>
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            &nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-retweet" aria-hidden="true"></i>
+                            &nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            &nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/addTweet" class="icon-block">
+        <i style="position: absolute; bottom: 20px; right: 20px; font-size: 100px;" class="fa fa-plus-circle fa-10x" aria-hidden="true"></i>
+    </a>
+</div>
+<div th:if="${addTweet}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-3">
+                <form method="get" action="/">
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" id="author" aria-describedby="emailHelp" placeholder="Enter author">
+                    </div>
+                    <div class="form-group">
+                        <label for="tweetcontent">Tweet Content</label>
+                        <input type="password" class="form-control" id="tweetcontent" placeholder="Enter Tweet">
+                    </div>
+                    <button type="submit" href="/" class="btn btn-primary">Tweet!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>
