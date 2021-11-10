@@ -22,14 +22,6 @@ public class TLController {
         this.saveService = saveService;
     }
 
-    @GetMapping("/")
-    public String greet(Model model){
-        model.addAttribute("tweet_content","Dies ist ein toller Tweet.");
-        model.addAttribute("author","Chef");
-        model.addAttribute("addTweet", false);
-        return "greeting";
-    }
-
     @GetMapping("/input")
     public String getInput(){
         return "input";

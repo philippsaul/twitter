@@ -13,6 +13,7 @@ public class SaveServiceImpl implements SaveService {
     private final List<Tweet> tweets;
     public SaveServiceImpl(){
         tweets = new ArrayList<>();
+        tweets.add(new Tweet("Hans", "Trinke gerade Kaffee"));
 
     }
     @Override
