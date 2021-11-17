@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.Greeting;
 import com.example.demo.dto.Tweet;
-import com.example.demo.dto.Who;
+import com.example.demo.service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.* ;
 import com.example.demo.service.impl.SaveServiceImpl;
@@ -16,10 +13,12 @@ import java.util.List;
 public class TwitterController {
 
     private final SaveServiceImpl saveServiceImpl;
+    private final SimpleService simpleService;
 
     @Autowired
-    public TwitterController(SaveServiceImpl saveServiceImpl){
+    public TwitterController(SaveServiceImpl saveServiceImpl, SimpleService simpleService){
         this.saveServiceImpl = saveServiceImpl;
+        this.simpleService = simpleService;
     }
 
     @GetMapping("/")
@@ -40,6 +39,8 @@ public class TwitterController {
     public String sendTweet(Tweet tweet, @RequestParam String author, @RequestParam String tweetcontent, Model model){
         model.addAttribute("addTweet", false);
         saveServiceImpl.addTweet(new Tweet(tweet.getAuthor(), tweet.getText()));
+        simpleService.createAndSaveGreeting(tweet.getAuthor());
+
         return "greeting";
     }
 

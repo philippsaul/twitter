@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-public class Greeting {
+public class GreetingDTO {
     private String name;
 
     public String getName() {

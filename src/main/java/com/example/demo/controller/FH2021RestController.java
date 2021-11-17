@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.dto.Who;
-import com.example.demo.dto.Greeting;
+import com.example.demo.dto.GreetingDTO;
 
 @RestController
 public class FH2021RestController {
@@ -36,23 +35,23 @@ public class FH2021RestController {
     }
 
     @PostMapping("/hallo/dto2")
-    public Greeting postTest3(@RequestBody Who who){
-        Greeting greeting = new Greeting();
+    public GreetingDTO postTest3(@RequestBody Who who){
+        GreetingDTO greeting = new GreetingDTO();
         greeting.setName("Hallo"+who.getName());
         return greeting;
     }
 
     @PostMapping("/hallo/dto3")
-    public ResponseEntity<Greeting> postTest4(@RequestBody Who who){
-        Greeting greeting = new Greeting();
+    public ResponseEntity<GreetingDTO> postTest4(@RequestBody Who who){
+        GreetingDTO greeting = new GreetingDTO();
         greeting.setName("Hallo"+who.getName());
         //return ResponseEntity.ok(greeting);
         return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(greeting);
     }
 
     @PostMapping(value="/hallo/dto4", produces = "application/xml")
-    public ResponseEntity<Greeting> postTest5(@RequestBody Who who){
-        Greeting greeting = new Greeting();
+    public ResponseEntity<GreetingDTO> postTest5(@RequestBody Who who){
+        GreetingDTO greeting = new GreetingDTO();
         greeting.setName("Hallo"+who.getName());
         //return ResponseEntity.ok(greeting);
         return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(greeting);
