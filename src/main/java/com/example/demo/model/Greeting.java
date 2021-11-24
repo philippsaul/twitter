@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Greeting {
@@ -8,9 +9,19 @@ public class Greeting {
     private long id;
     private String name;
     private String phrase;
+    private LocalDateTime created;
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "greeting_gen")
+    @SequenceGenerator(name = "greeting_gen", sequenceName = "greeting_seq", allocationSize = 1)
     @Column(nullable = false)
     public long getId() {
         return id;
@@ -38,4 +49,7 @@ public class Greeting {
     public void setPhrase(String phrase) {
         this.phrase = phrase;
     }
+
+    @PrePersist
+    public void calculateCreated(){created= LocalDateTime.now();}
 }
