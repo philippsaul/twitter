@@ -21,7 +21,7 @@ public class SimpleServiceImpl implements SimpleService {
     public void createAndSaveGreeting(String name) {
         Greeting greeting = new Greeting();
         greeting.setName(name);
-        greeting.setPhrase("hallo"+ name);
+        greeting.setPhrase(name);
         greetingRepository.save(greeting);
     }
 }

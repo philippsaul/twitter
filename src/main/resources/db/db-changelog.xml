@@ -19,6 +19,6 @@
         </createTable>
     </changeSet>
     <changeSet id="create sequence greeting_seq" author="psaul">
-        <createSequence sequenceName="greeting_seq" incrementBy="5"/>
+        <createSequence sequenceName="greeting_seq" incrementBy="1"/>
     </changeSet>
 </databaseChangeLog>
