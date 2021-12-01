@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create table greeting" author="letemi">
+        <createTable tableName="greeting">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_greeting"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phrase" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create sequence greeting_seq" author="letemi">
+        <createSequence sequenceName="greeting_seq" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="create table person" author="letemi">
+        <createTable tableName="person">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_person"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create sequence person_seq" author="letemi">
+        <createSequence sequenceName="person_seq" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="drop column name in table greeting" author="letemi">
+        <dropColumn tableName="greeting" columnName="name"/>
+    </changeSet>
+
+    <changeSet id="asdfölkjasdölfkjas" author="letemi">
+        <addColumn tableName="greeting">
+            <column name="person_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_greeting_person" references="person(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

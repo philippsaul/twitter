@@ -41,7 +41,7 @@ public class TwitterController {
         saveServiceImpl.addTweet(new Tweet(tweet.getAuthor(), tweet.getText()));
         simpleService.createAndSaveGreeting(tweet.getAuthor());
 
-        return "greeting";
+        return "redirect:/";
     }
 
     @GetMapping("/addTweet")

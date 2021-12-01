@@ -19,9 +19,9 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public void createAndSaveGreeting(String name) {
-        Greeting greeting = new Greeting();
+/**        Greeting greeting = new Greeting();
         greeting.setName(name);
         greeting.setPhrase("hallo"+ name);
-        greetingRepository.save(greeting);
+        greetingRepository.save(greeting);**/
     }
 }

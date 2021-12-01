@@ -1,29 +1,23 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-public class Greeting {
+public class Greeting extends MyBaseEntity {
 
     private long id;
-    private String name;
     private String phrase;
+    private Person person;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "greeting_gen")
+    @SequenceGenerator(name = "greeting_gen", sequenceName = "greeting_seq", allocationSize = 1)
     @Column(nullable = false)
     public long getId() {
         return id;
     }
 
-    @Column(length = 20, nullable = false)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
     public void setId(long id) {
@@ -37,5 +31,14 @@ public class Greeting {
 
     public void setPhrase(String phrase) {
         this.phrase = phrase;
+    }
+
+    @ManyToOne
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
