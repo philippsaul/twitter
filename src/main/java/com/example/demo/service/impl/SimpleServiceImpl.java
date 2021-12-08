@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Greeting;
 
+import java.util.Optional;
+
 
 @Service
 public class SimpleServiceImpl implements SimpleService {
@@ -22,13 +24,12 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public void createAndSaveGreeting(String name){
-        Person person = personRepository.findByName(name);
-        if(person == null) {
-            Person newPerson = new Person();
-            newPerson.setName(name);
-            person = personRepository.save(newPerson);
+        Person person = personRepository.findByName(name).orElseGet(() -> {
+                Person newPerson = new Person();
+                newPerson.setName(name);
+                return personRepository.save(newPerson);
+        });
 
-        }
         Greeting greeting = new Greeting();
         greeting.setPerson(person);
         greeting.setPhrase("Hallo         " + name);
