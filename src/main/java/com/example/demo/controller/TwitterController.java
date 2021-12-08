@@ -52,6 +52,11 @@ public class TwitterController {
         return "greeting";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     /*@PostMapping("/sendTweet")
     public String postInput(@RequestParam String author, @RequestParam String tweet, @RequestParam String content, Model model){
         model.addAttribute("author", "");
